@@ -161,7 +161,7 @@ public class Annonce {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now(); // Exemple : 2016/11/16 12:08:43
             
-            String sql = "INSERT INTO annoncesTest " + "(titre, code_postale, ville,"
+            String sql = "INSERT INTO annonces " + "(titre, code_postale, ville,"
                     + " adresse, telephone, description, prix, mail, region, "
                     + "departement, souscategorie, categorie, date_publication)"
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -226,7 +226,7 @@ public class Annonce {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now(); // Exemple : 2016/11/16 12:08:43
             
-            String sql = "UPDATE annoncesTest " + "SET titre = ?, code_postale = ?,"
+            String sql = "UPDATE annonces " + "SET titre = ?, code_postale = ?,"
                     + " ville = ?, adresse = ?, telephone = ?, description = ?,"
                     + " prix = ?, mail = ?, region = ?, departement = ?, "
                     + " souscategorie = ?, categorie = ?, date_publication = ? "
@@ -288,7 +288,7 @@ public class Annonce {
         Connection cnx = null;
             
             // Requête pour supprimer
-            String sql = "DELETE FROM annoncesTest " + " WHERE id = ?";
+            String sql = "DELETE FROM annonces " + " WHERE id = ?";
         
         try {
             // On se connecte à la base de donnée
