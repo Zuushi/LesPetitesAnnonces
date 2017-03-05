@@ -151,6 +151,7 @@ public class Annonce {
     //
     // Fonction qui crée une annonce
     public boolean creerAnnonce () throws SQLException {
+        
         // Booléen renvoyé à la fin de la fonction        
         boolean bool;
         PreparedStatement insertAnnonce = null;
@@ -215,12 +216,13 @@ public class Annonce {
             String ville, String adresse, String telephone, String description,
             double prix, String mail, String region, String departement,
             String sousCategorie, String categorie) throws SQLException {
+        
         // Booléen renvoyé à la fin de la fonction        
         boolean bool = false;
         PreparedStatement updateAnnonce = null;
         Connection cnx = null;
         
-        // Génère la date et l'heure de publication de l'annonce
+        // Génère la date et l'heure
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now(); // Exemple : 2016/11/16 12:08:43
             
@@ -235,7 +237,7 @@ public class Annonce {
             cnx = Connecter();
             updateAnnonce = cnx.prepareStatement(sql);
             
-            // On récupère les valeurs à insérer en base
+            // On récupère toute les valeurs et on met à jour
             updateAnnonce.setString(1, titre);
             updateAnnonce.setInt(2, code_postale);
             updateAnnonce.setString(3, ville);
@@ -251,14 +253,14 @@ public class Annonce {
             updateAnnonce.setString(13, "Modifiée le : " + dtf.format(now));
             updateAnnonce.setInt(14, id);
 
-            // Execute l'insertion de l'annonce
+            // Execute la mise à jour de l'annonce
             updateAnnonce.executeUpdate();
-            // L'ajout d'annonce s'est bien déroulé
+            // La mise à jour de l'annonce s'est bien déroulé
             System.out.println("Record is updated to annonces table!");
             bool = true;
 
         } catch (SQLException e) {
-                // Une erreur est survenue lors de l'ajout d'annonce
+                // Une erreur est survenue lors de la modification de l'annonce
                 bool = false;
                 System.out.println(e.getMessage());
 
@@ -284,13 +286,8 @@ public class Annonce {
         boolean bool = false;
         PreparedStatement updateAnnonce = null;
         Connection cnx = null;
-        
-        // Génère la date et l'heure de publication de l'annonce
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now(); // Exemple : 2016/11/16 12:08:43
             
-            // Requête pour supprimmer
-            // Trigger qui insère l'annonce supprimé dans la table archive
+            // Requête pour supprimer
             String sql = "DELETE FROM annoncesTest " + " WHERE id = ?";
         
         try {
@@ -298,17 +295,17 @@ public class Annonce {
             cnx = Connecter();
             updateAnnonce = cnx.prepareStatement(sql);
             
-            // On récupère les valeurs à insérer en base
+            // On récupère l'id de l'annonce à supprimer
             updateAnnonce.setInt(1, id);
 
-            // Execute l'insertion de l'annonce
+            // Execute la requête de suppression
             updateAnnonce.executeUpdate();
-            // L'ajout d'annonce s'est bien déroulé
+            // La suppression s'est bien déroulée
             System.out.println("Delete from annonce complete!");
             bool = true;
 
         } catch (SQLException e) {
-                // Une erreur est survenue lors de l'ajout d'annonce
+                // Une erreur est survenue lors de la suppression de l'annonce
                 bool = false;
                 System.out.println(e.getMessage());
 
