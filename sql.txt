@@ -1,0 +1,111 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: user
+#------------------------------------------------------------
+
+CREATE TABLE user(
+        mail      Varchar (250) NOT NULL ,
+        nom       Varchar (250) ,
+        prenom    Varchar (250) ,
+        mdp       Varchar (250) ,
+        telephone Varchar (25) ,
+        PRIMARY KEY (mail )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: annonces
+#------------------------------------------------------------
+
+CREATE TABLE annonces(
+        id            int (11) Auto_increment  NOT NULL ,
+        titre         Varchar (250) ,
+        description   Text ,
+        prix          Double ,
+        telephone     Varchar (25) ,
+        ville         Varchar (250) ,
+        adresse       Varchar (250) ,
+        code_postale  Int ,
+        mail          Varchar (250) ,
+        region        Varchar (250) ,
+        departement   Varchar (250) ,
+        souscategorie Varchar (250) ,
+        categorie     Varchar (250) ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: region
+#------------------------------------------------------------
+
+CREATE TABLE region(
+        region Varchar (250) NOT NULL ,
+        PRIMARY KEY (region )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: departement
+#------------------------------------------------------------
+
+CREATE TABLE departement(
+        departement Varchar (250) NOT NULL ,
+        region      Varchar (250) ,
+        PRIMARY KEY (departement )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: categorie
+#------------------------------------------------------------
+
+CREATE TABLE categorie(
+        categorie Varchar (250) NOT NULL ,
+        PRIMARY KEY (categorie )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: souscategorie
+#------------------------------------------------------------
+
+CREATE TABLE souscategorie(
+        souscategorie Varchar (250) NOT NULL ,
+        categorie     Varchar (250) ,
+        PRIMARY KEY (souscategorie )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: annoncesarchives
+#------------------------------------------------------------
+
+CREATE TABLE annoncesarchives(
+        id            int (11) Auto_increment  NOT NULL ,
+        titre         Varchar (250) ,
+        description   Text ,
+        prix          Double ,
+        telephone     Varchar (25) ,
+        ville         Varchar (250) ,
+        adresse       Varchar (250) ,
+        departement   Varchar (250) ,
+        code_postale  Int ,
+        region        Varchar (250) ,
+        souscategorie Varchar (250) ,
+        categorie     Varchar (250) ,
+        mail          Varchar (250) ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+ALTER TABLE annonces ADD CONSTRAINT FK_annonces_mail FOREIGN KEY (mail) REFERENCES user(mail);
+ALTER TABLE annonces ADD CONSTRAINT FK_annonces_region FOREIGN KEY (region) REFERENCES region(region);
+ALTER TABLE annonces ADD CONSTRAINT FK_annonces_departement FOREIGN KEY (departement) REFERENCES departement(departement);
+ALTER TABLE annonces ADD CONSTRAINT FK_annonces_souscategorie FOREIGN KEY (souscategorie) REFERENCES souscategorie(souscategorie);
+ALTER TABLE annonces ADD CONSTRAINT FK_annonces_categorie FOREIGN KEY (categorie) REFERENCES categorie(categorie);
+ALTER TABLE departement ADD CONSTRAINT FK_departement_region FOREIGN KEY (region) REFERENCES region(region);
+ALTER TABLE souscategorie ADD CONSTRAINT FK_souscategorie_categorie FOREIGN KEY (categorie) REFERENCES categorie(categorie);
