@@ -1,0 +1,173 @@
+﻿INSERT INTO `region` VALUES ('Alsace');
+INSERT INTO `region` VALUES ('Aquitaine');
+INSERT INTO `region` VALUES ('Auvergne');
+INSERT INTO `region` VALUES ('Basse Normandie');
+INSERT INTO `region` VALUES ('Bourgogne');
+INSERT INTO `region` VALUES ('Bretagne');
+INSERT INTO `region` VALUES ('Centre');
+INSERT INTO `region` VALUES ('Champagne Ardenne');
+INSERT INTO `region` VALUES ('Corse');
+INSERT INTO `region` VALUES ('Franche Comte');
+INSERT INTO `region` VALUES ('Haute Normandie');
+INSERT INTO `region` VALUES ('Ile de France');
+INSERT INTO `region` VALUES ('Languedoc Roussillon');
+INSERT INTO `region` VALUES ('Limousin');
+INSERT INTO `region` VALUES ('Lorraine');
+INSERT INTO `region` VALUES ('Midi-Pyrénées');
+INSERT INTO `region` VALUES ('Nord Pas de Calais');
+INSERT INTO `region` VALUES ('Provence Alpes Côte d\'Azur');
+INSERT INTO `region` VALUES ('Pays de la Loire');
+INSERT INTO `region` VALUES ('Picardie');
+INSERT INTO `region` VALUES ('Poitou Charente');
+INSERT INTO `region` VALUES ('Rhone Alpes');
+
+INSERT INTO departement VALUES('Bas-Rhin', 'Alsace');
+INSERT INTO departement VALUES('Haut-Rhin', 'Alsace');
+
+INSERT INTO departement VALUES('Dordogne', 'Aquitaine');
+INSERT INTO departement VALUES('Gironde', 'Aquitaine');
+INSERT INTO departement VALUES('Landes', 'Aquitaine');
+INSERT INTO departement VALUES('Lot-et-Garonne', 'Aquitaine');
+INSERT INTO departement VALUES('Pyrénées-Atlantique', 'Aquitaine');
+
+INSERT INTO departement VALUES('Allier', 'Auvergne');
+INSERT INTO departement VALUES('Cantal', 'Auvergne');
+INSERT INTO departement VALUES('Haute-Loire', 'Auvergne');
+INSERT INTO departement VALUES('Puy-de-Dôme', 'Auvergne');
+
+INSERT INTO departement VALUES('Calvados', 'Basse Normandie');
+INSERT INTO departement VALUES('Manche', 'Basse Normandie');
+INSERT INTO departement VALUES('Orne', 'Basse Normandie');
+
+INSERT INTO departement VALUES("Côte-d'OR", 'Bourgogne');
+INSERT INTO departement VALUES('Nièvre', 'Bourgogne');
+INSERT INTO departement VALUES('Saône-et-Loire', 'Bourgogne');
+INSERT INTO departement VALUES('Yonne', 'Bourgogne');
+
+INSERT INTO departement VALUES('Côtes-d\'Armor', 'Bretagne');
+INSERT INTO departement VALUES('Finistère', 'Bretagne');
+INSERT INTO departement VALUES('Ille-et-Vilaine', 'Bretagne');
+INSERT INTO departement VALUES('Morbihan', 'Bretagne');
+
+INSERT INTO departement VALUES('Cher', 'Centre');
+INSERT INTO departement VALUES('Eure-et-Loir', 'Centre');
+INSERT INTO departement VALUES('Indre', 'Centre');
+INSERT INTO departement VALUES('Indre-et-Loire', 'Centre');
+INSERT INTO departement VALUES('Loir-et-Cher', 'Centre');
+INSERT INTO departement VALUES('Loiret', 'Centre');
+
+INSERT INTO departement VALUES('Ardennes', 'Champagne Ardenne');
+INSERT INTO departement VALUES('Aube', 'Champagne Ardenne');
+INSERT INTO departement VALUES('Marne', 'Champagne Ardenne');
+INSERT INTO departement VALUES('Haute-Marne', 'Champagne Ardenne');
+
+INSERT INTO departement VALUES('Haute-Corse', 'Corse');
+INSERT INTO departement VALUES('Corse du Sud', 'Corse');
+
+INSERT INTO departement VALUES('Doubs', 'Franche Comte');
+INSERT INTO departement VALUES('Jura', 'Franche Comte');
+INSERT INTO departement VALUES('Haute-Saône', 'Franche Comte');
+INSERT INTO departement VALUES('Territoire de Belfort', 'Franche Comte');
+
+INSERT INTO departement VALUES('Eure', 'Haute Normandie');
+INSERT INTO departement VALUES('Seine-Maritime', 'Haute Normandie');
+
+INSERT INTO departement VALUES('Paris', 'Ile de France');
+INSERT INTO departement VALUES('Seine-et-Marne', 'Ile de France');
+INSERT INTO departement VALUES('Yvelines', 'Ile de France');
+INSERT INTO departement VALUES('Essone', 'Ile de France');
+INSERT INTO departement VALUES('Hauts-de-Seine', 'Ile de France');
+INSERT INTO departement VALUES('Seine-Saint-Denis', 'Ile de France');
+INSERT INTO departement VALUES('Val-de-Marne', 'Ile de France');
+INSERT INTO departement VALUES('Val-d\'Oise', 'Ile de France');
+
+INSERT INTO departement VALUES('Aude', 'Languedoc Roussillon');
+INSERT INTO departement VALUES('Gard', 'Languedoc Roussillon');
+INSERT INTO departement VALUES('Hérault', 'Languedoc Roussillon');
+INSERT INTO departement VALUES('Lozère', 'Languedoc Roussillon');
+INSERT INTO departement VALUES('Pyrénées-Orientale', 'Languedoc Roussillon');
+
+INSERT INTO departement VALUES('Corrèze', 'Limousin');
+INSERT INTO departement VALUES('Creuse', 'Limousin');
+INSERT INTO departement VALUES('Haute-Vienne', 'Limousin');
+
+INSERT INTO departement VALUES('Meurthe-et-Moselle', 'Lorraine');
+INSERT INTO departement VALUES('Meuse', 'Lorraine');
+INSERT INTO departement VALUES('Moselle', 'Lorraine');
+INSERT INTO departement VALUES('Vosges', 'Lorraine');
+
+INSERT INTO departement VALUES('Ariège', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Aveyron', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Haute-Garonne', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Gers', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Lot', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Haute-Pyrénées', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Tarn', 'Midi-Pyrénées');
+INSERT INTO departement VALUES('Tarn-et-Garonne', 'Midi-Pyrénées');
+
+INSERT INTO departement VALUES('Nord', 'Nord Pas de Calais');
+INSERT INTO departement VALUES('Pas-de-Calais', 'Nord Pas de Calais');
+
+INSERT INTO departement VALUES('Loire-Atlantique', 'Pays de la Loire');
+INSERT INTO departement VALUES('Maine-et-Loire', 'Pays de la Loire');
+INSERT INTO departement VALUES('Mayenne', 'Pays de la Loire');
+INSERT INTO departement VALUES('Sarthe', 'Pays de la Loire');
+INSERT INTO departement VALUES('Vendée', 'Pays de la Loire');
+
+INSERT INTO departement VALUES('Alpes-de-Haute-Provence', 'Provence Alpes Côte d\'Azur');
+INSERT INTO departement VALUES('Hautes-Alpes', 'Provence Alpes Côte d\'Azur');
+INSERT INTO departement VALUES('Alpes-Maritimes', 'Provence Alpes Côte d\'Azur');
+INSERT INTO departement VALUES('Bouches-du-Rhône', 'Provence Alpes Côte d\'Azur');
+INSERT INTO departement VALUES('Var', 'Provence Alpes Côte d\'Azur');
+INSERT INTO departement VALUES('Vaucluse', 'Provence Alpes Côte d\'Azur');
+
+INSERT INTO departement VALUES('Aisne', 'Picardie');
+INSERT INTO departement VALUES('Oise', 'Picardie');
+INSERT INTO departement VALUES('Somme', 'Picardie');
+
+INSERT INTO departement VALUES('Charante', 'Poitou Charente');
+INSERT INTO departement VALUES('Charante-Maritime', 'Poitou Charente');
+INSERT INTO departement VALUES('Deux-Sèvres', 'Poitou Charente');
+INSERT INTO departement VALUES('Vienne', 'Poitou Charente');
+
+INSERT INTO departement VALUES('Ain', 'Rhone Alpes');
+INSERT INTO departement VALUES('Ardèche', 'Rhone Alpes');
+INSERT INTO departement VALUES('Drôme', 'Rhone Alpes');
+INSERT INTO departement VALUES('Isère', 'Rhone Alpes');
+INSERT INTO departement VALUES('Loire', 'Rhone Alpes');
+INSERT INTO departement VALUES('Rhône', 'Rhone Alpes');
+INSERT INTO departement VALUES('Savoie', 'Rhone Alpes');
+INSERT INTO departement VALUES('Haute-Savoie', 'Rhone Alpes');
+
+
+INSERT INTO categorie VALUES ('Vehicules');
+INSERT INTO categorie VALUES ('Multimedia');
+INSERT INTO categorie VALUES ('Loisirs');
+INSERT INTO categorie VALUES ('Maison');
+
+INSERT INTO souscategorie VALUES ('Voiture', 'Vehicules');
+INSERT INTO souscategorie VALUES ('Moto','Vehicules');
+INSERT INTO souscategorie VALUES ('Pieces','Vehicules');
+
+INSERT INTO souscategorie VALUES ('Informatique','Multimedia');
+INSERT INTO souscategorie VALUES ('Jeux Video','Multimedia');
+INSERT INTO souscategorie VALUES ('Image et Son','Multimedia');
+INSERT INTO souscategorie VALUES ('Telephone','Multimedia');
+
+INSERT INTO souscategorie VALUES ('Films','Loisirs');
+INSERT INTO souscategorie VALUES ('Livres','Loisirs');
+INSERT INTO souscategorie VALUES ('Musique','Loisirs');
+INSERT INTO souscategorie VALUES ('Jouets','Loisirs');
+INSERT INTO souscategorie VALUES ('Sports','Loisirs');
+INSERT INTO souscategorie VALUES ('Instrument de Musique','Loisirs');
+
+INSERT INTO souscategorie VALUES ('Meubles','Maison');
+INSERT INTO souscategorie VALUES ('Electromenage','Maison');
+INSERT INTO souscategorie VALUES ('Bricolage','Maison');
+INSERT INTO souscategorie VALUES ('Jardinage','Maison');
+
+
+
+
+
+
