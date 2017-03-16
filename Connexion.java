@@ -1,4 +1,4 @@
-package view;
+package vue;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,12 +6,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.mysql.jdbc.PreparedStatement;
+
+import modele.Connect;
+import modele.User;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Connexion extends JFrame {
 
@@ -38,8 +51,8 @@ public class Connexion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Connexion() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Connexion() throws SQLException{
+		this.addWindowListener(new MyWindowListener());
 		setBounds(250, 100, 900, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,6 +94,58 @@ public class Connexion extends JFrame {
 		contentPane.add(error);
 		
 		JButton valide = new JButton("Valider");
+		valide.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(mail.getText() == null || mail.getText() == "" || mdp.getText() == null || mdp.getText() == ""){
+					error.setText("Veuillez remplir correctement tous les champs");			
+				}else{
+					Connection cnx = null;
+					PreparedStatement checkmail = null;
+
+					try{
+						cnx = Connect.Connecter();
+						String Sqlcheck = "SELECT * FROM user WHERE mail='" + mail.getText() + "'";
+						checkmail = (PreparedStatement) cnx.prepareStatement(Sqlcheck);
+						ResultSet check = checkmail.executeQuery();
+						if(check.next()){
+							String mdp2 = check.getString("mdp");
+							if(mdp.getText().equals(mdp2)){ 
+								User A = new User(mail.getText(), mdp.getText());
+								Principal frame = new Principal(A);
+								frame.setVisible(true);
+								dispose();
+							}else{
+								error.setText("Les informations ne correspondent pas");			
+
+							}
+						}else{
+							error.setText("Les informations ne correspondent pas");			
+
+						}
+					}catch(Exception e){
+						JOptionPane.showMessageDialog(null, "Problème lors de la connexion : " + e);
+					}finally{
+						if(cnx != null){
+							try {
+								cnx.close();
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						if(checkmail != null){
+							try {
+								checkmail.close();
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
 		valide.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		valide.setBounds(414, 338, 145, 41);
 		contentPane.add(valide);
