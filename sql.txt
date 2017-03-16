@@ -22,19 +22,22 @@ CREATE TABLE user(
 #------------------------------------------------------------
 
 CREATE TABLE annonces(
-        id            int (11) Auto_increment  NOT NULL ,
-        titre         Varchar (250) ,
-        description   Text ,
-        prix          Double ,
-        telephone     Varchar (25) ,
-        ville         Varchar (250) ,
-        adresse       Varchar (250) ,
-        code_postale  Int ,
-        mail          Varchar (250) ,
-        region        Varchar (250) ,
-        departement   Varchar (250) ,
-        souscategorie Varchar (250) ,
-        categorie     Varchar (250) ,
+        id               int (11) Auto_increment  NOT NULL ,
+        titre            Varchar (250) ,
+        description      Text ,
+        prix             Double ,
+        telephone        Varchar (25) ,
+        ville            Varchar (250) ,
+        adresse          Varchar (250) ,
+        code_postale     Int ,
+        date_publication Varchar (250) ,
+        voir_telephone   Int ,
+        voir_mail        Int ,
+        mail             Varchar (250) ,
+        region           Varchar (250) ,
+        departement      Varchar (250) ,
+        souscategorie    Varchar (250) ,
+        categorie        Varchar (250) ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
@@ -82,23 +85,26 @@ CREATE TABLE souscategorie(
 
 
 #------------------------------------------------------------
-# Table: annoncesarchives
+# Table: annonces_archives
 #------------------------------------------------------------
 
-CREATE TABLE annoncesarchives(
-        id            int (11) Auto_increment  NOT NULL ,
-        titre         Varchar (250) ,
-        description   Text ,
-        prix          Double ,
-        telephone     Varchar (25) ,
-        ville         Varchar (250) ,
-        adresse       Varchar (250) ,
-        departement   Varchar (250) ,
-        code_postale  Int ,
-        region        Varchar (250) ,
-        souscategorie Varchar (250) ,
-        categorie     Varchar (250) ,
-        mail          Varchar (250) ,
+CREATE TABLE annonces_archives(
+        id               int (11) Auto_increment  NOT NULL ,
+        titre            Varchar (250) ,
+        description      Text ,
+        prix             Double ,
+        telephone        Varchar (25) ,
+        ville            Varchar (250) ,
+        adresse          Varchar (250) ,
+        code_postale     Int ,
+        date_publication Varchar (250) ,
+        voir_telephone   Int ,
+        voir_mail        Int ,
+        mail             Varchar (250) ,
+        region           Varchar (250) ,
+        departement      Varchar (250) ,
+        categorie        Varchar (250) ,
+        souscategorie    Varchar (250) ,
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
