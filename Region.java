@@ -15,6 +15,8 @@ import javax.swing.DefaultComboBoxModel;
 import static lespetitesannonces.AjoutAnnonce.jComboBox1;
 import static lespetitesannonces.AjoutAnnonce.jComboBox2;
 import static lespetitesannonces.Connect.Connecter;
+import static lespetitesannonces.RechercheAnnonce.jComboBox5;
+import static lespetitesannonces.RechercheAnnonce.jComboBox6;
 
 /**
  *
@@ -25,7 +27,7 @@ public class Region {
     //
     // Méthodes
     //
-    public boolean Collection () throws SQLException {
+    public boolean collection() throws SQLException {
 
         // Booléen renvoyé à la fin de la fonction        
         boolean bool = false;
@@ -38,7 +40,7 @@ public class Region {
         int nbRegions = 0;
         int i = 0;
         String regionEnCours;
-        ArrayList regionArray = new ArrayList();
+        //ArrayList regionArray = new ArrayList();
             
         // Requête pour selectionner le nombre total de regions
         String sql = "SELECT COUNT(*) AS total " + " FROM region";
@@ -72,11 +74,11 @@ public class Region {
             
             // On insère dans un listArray le nom de chaque région
             while (selectNomDesRegions.next()){
-                regionArray.add(selectNomDesRegions.getString("region"));
+                Globals.regionArray.add(selectNomDesRegions.getString("region"));
             }
             
             // Test unitaire qui renvoi la liste des régions
-            System.out.print(regionArray + "\n");
+            System.out.print(Globals.regionArray + "\n");
 
             int n = nbRegions;
             List<String> nomRegion = new ArrayList<String>();
@@ -85,7 +87,7 @@ public class Region {
             while (i < n) {
                 List<String> region = new ArrayList<String>();
                
-                regionEnCours = regionArray.get(i).toString();
+                regionEnCours = Globals.regionArray.get(i).toString();
 
                 selectDepartements = cnx.prepareStatement(sql3);
                 // Execute la requête de selection des departements
@@ -103,9 +105,19 @@ public class Region {
                 i++;
             } //end of while
             
-            // Permet de charger dans les combo box les regions et départements
-            jComboBox1.setModel(new DefaultComboBoxModel(nomRegion.toArray()));
-            jComboBox2.setModel(new DefaultComboBoxModel(Globals.lesRegions.get(0).toArray()));
+            // Permet de charger dans les combo boxes les regions et départements
+            if (jComboBox1 != null) {
+                jComboBox1.setModel(new DefaultComboBoxModel(nomRegion.toArray()));  
+            }
+            if (jComboBox2 != null) {
+                jComboBox2.setModel(new DefaultComboBoxModel(Globals.lesRegions.get(0).toArray()));
+            }
+            if (jComboBox5 != null) {
+                jComboBox5.setModel(new DefaultComboBoxModel(nomRegion.toArray()));  
+            }
+            if (jComboBox6 != null) {
+                jComboBox6.setModel(new DefaultComboBoxModel(Globals.lesRegions.get(0).toArray()));
+            }
             
             // La création des collections d'objets s'est bien déroulée
             System.out.println("Chargement des collections des regions / départements OK !");
@@ -124,7 +136,7 @@ public class Region {
                     selectNomRegion.close();
                     selectDepartements.close();
                 }
-            // On ferme la connexion à la base de donnée
+            // On ferme la connexion à la base de données
                 if (cnx != null) {
                    cnx.close();
                 }

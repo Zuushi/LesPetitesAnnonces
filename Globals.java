@@ -16,5 +16,9 @@ public class Globals {
     
     public static List<List<String>> lesRegions = new ArrayList<List<String>>();
     public static List<List<String>> lesCatégories = new ArrayList<List<String>>();
-
+    public static ArrayList regionArray = new ArrayList();
+    public static ArrayList CatégorieArray = new ArrayList();
+    public static String emailUser = "jonathan.graille@gmail.com";
+    public static String telephoneUser = "";
+    
 }
