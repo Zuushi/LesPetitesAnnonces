@@ -74,28 +74,24 @@ public class User {
 		}
 	}
 
-	public boolean modifierProfil(String mail, String nom, String prenom, String telephone) throws SQLException{
-		boolean a = false;
+	public void modifierProfil( String nom, String prenom, String telephone) throws SQLException{
 		Connection cnx = null;
 		PreparedStatement modify = null;
 		try{
-			this.mail = mail;
 			this.nom = nom;
 			this.prenom = prenom;
 			this.telephone = telephone;
 			cnx = Connect.Connecter();
-			String Sqlmodify = "UPDATE FROM user SET mail= ?, nom = ?, prenom = ?, telephone = ? ";
+			String Sqlmodify = "UPDATE user SET nom = ?, prenom = ?, telephone = ? WHERE mail = ?";
 			modify = (PreparedStatement) cnx.prepareStatement(Sqlmodify);
-			modify.setString(1, mail);
-			modify.setString(2, nom);
-			modify.setString(3, prenom);
-			modify.setString(4, telephone);
-			
+			modify.setString(1, nom);
+			modify.setString(2, prenom);
+			modify.setString(3, telephone);
+			modify.setString(4, this.mail);
 			modify.executeUpdate();
-			a = true;
+			
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de l'inscription : " + e);
-			a = false;
+			JOptionPane.showMessageDialog(null, "Problème lors de la modification du profil : " + e);
 		}finally{
 			if(cnx != null){
 				cnx.close();
@@ -104,12 +100,10 @@ public class User {
 				modify.close();
 			}
 		}
-		return a;
 	}
 
-	public boolean supprimerProfil() throws SQLException{
+	public void supprimerProfil() throws SQLException{
 		
-		boolean a = false;
 		Connection cnx = null;
 		PreparedStatement destroy = null;
 		try{
@@ -117,10 +111,8 @@ public class User {
 			String sqldestroy = "DELETE FROM user where mail='" + this.mail + "'";
 			destroy = (PreparedStatement) cnx.prepareStatement(sqldestroy);
 			destroy.execute();
-			a = true;
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, "Problème lors de la suppression : " + e);
-			a = false;
 		}finally{
 			if(cnx != null){
 				cnx.close();
@@ -129,7 +121,6 @@ public class User {
 				destroy.close();
 			}
 		}
-		return a;
 	}
 	
 	public String getMail() {
