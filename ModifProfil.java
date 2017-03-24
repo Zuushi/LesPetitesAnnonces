@@ -127,7 +127,7 @@ public class ModifProfil extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(627, 348, 107, 46);
+		btnNewButton_1.setBounds(627, 394, 107, 46);
 		contentPane.add(btnNewButton_1);
 		
 		JButton button = new JButton("Valider");
@@ -191,8 +191,42 @@ public class ModifProfil extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		button.setBackground(new Color(0, 102, 0));
-		button.setBounds(176, 348, 107, 46);
+		button.setBounds(176, 394, 107, 46);
 		contentPane.add(button);
+		
+		JButton btnModifierLeMot = new JButton("Modifier le mot de passe");
+		btnModifierLeMot.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String mdp=JOptionPane.showInputDialog("Quel est le nouveau mot de passe ?");
+				if (mdp!=null){
+					if (mdp.length()!=0){
+						int option2= JOptionPane.showConfirmDialog(null,"Voulez-vous vraiment que votre nouveau mot de passe soit "+mdp+" ?","Changement de mot de passe",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+						if(option2 == JOptionPane.OK_OPTION){
+							try {
+								a.modifierMdp(mdp);
+								JOptionPane.showMessageDialog(null, "Votre mot de passe a bien été modifié !");
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						}else{
+							JOptionPane.showMessageDialog(null, "Le champ est vide");
+						}
+					
+				
+				}
+				
+			}
+		
+		});
+		btnModifierLeMot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnModifierLeMot.setBounds(307, 321, 201, 32);
+		contentPane.add(btnModifierLeMot);
 		
 		
 	}
