@@ -101,6 +101,32 @@ public class User {
 			}
 		}
 	}
+	
+	public void modifierMdp( String mdp) throws SQLException{
+		Connection cnx = null;
+		PreparedStatement modify = null;
+		try{
+			this.mdp = nom;
+			
+			cnx = Connect.Connecter();
+			String Sqlmodify = "UPDATE user SET mdp = ? WHERE mail = ?";
+			modify = (PreparedStatement) cnx.prepareStatement(Sqlmodify);
+			modify.setString(1, mdp);
+			
+			modify.setString(2, this.mail);
+			modify.executeUpdate();
+			
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Problème lors de la modification du mot de passe : " + e);
+		}finally{
+			if(cnx != null){
+				cnx.close();
+			}
+			if(modify != null){
+				modify.close();
+			}
+		}
+	}
 
 	public void supprimerProfil() throws SQLException{
 		
