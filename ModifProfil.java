@@ -200,7 +200,7 @@ public class ModifProfil extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				String mdp=JOptionPane.showInputDialog("Quel est le nouveau mot de passe ?");
 				if (mdp!=null){
-					if (mdp.length()!=0){
+					if (mdp.length()>=6){
 						int option2= JOptionPane.showConfirmDialog(null,"Voulez-vous vraiment que votre nouveau mot de passe soit "+mdp+" ?","Changement de mot de passe",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 						if(option2 == JOptionPane.OK_OPTION){
 							try {
@@ -212,7 +212,7 @@ public class ModifProfil extends JFrame {
 							}
 						}
 						}else{
-							JOptionPane.showMessageDialog(null, "Le champ est vide");
+							JOptionPane.showMessageDialog(null, "Le mot de passe doit contenir au minimum 6 caracteres");
 						}
 					
 				
