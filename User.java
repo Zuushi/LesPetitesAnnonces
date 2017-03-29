@@ -62,7 +62,7 @@ public class User {
 			System.out.println(this.mail + " " + this.nom + " " + this.prenom + " " + this.telephone + " Connection réussie");			
 
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de l'inscription : " + e);
+			JOptionPane.showMessageDialog(null, "Problème lors de la connexion : " + e);
 			
 		}finally {
 			if(cnx != null){
@@ -106,7 +106,7 @@ public class User {
 		Connection cnx = null;
 		PreparedStatement modify = null;
 		try{
-			this.mdp = nom;
+			this.mdp = mdp;
 			
 			cnx = Connect.Connecter();
 			String Sqlmodify = "UPDATE user SET mdp = ? WHERE mail = ?";
