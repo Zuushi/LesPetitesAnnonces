@@ -1,5 +1,4 @@
 # LesPetitesAnnonces
 PPE 4 Les Petites Annonces
 
-
--> Les collections de région -> départements et de catégorie -> sous catégories c'est ok.
+**  Utiliser NetBeans pour pouvoir profiter de la partie design des fichiers .form
