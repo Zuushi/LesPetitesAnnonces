@@ -17,18 +17,20 @@ import static lespetitesannonces.AjoutAnnonce.jComboBox2;
 import static lespetitesannonces.Connect.Connecter;
 import static lespetitesannonces.RechercheAnnonce.jComboBox5;
 import static lespetitesannonces.RechercheAnnonce.jComboBox6;
+import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox10;
+import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox9;
 
 /**
  *
  * @author jonathan
  */
 public class Region {
-
+    public static List<List<String>> lesDepartements = new ArrayList<List<String>>();
     //
     // Méthodes
     //
-    public boolean collection() throws SQLException {
-
+    public boolean collection(boolean ajout) throws SQLException {
+        lesDepartements.clear();
         // Booléen renvoyé à la fin de la fonction        
         boolean bool = false;
         
@@ -45,10 +47,10 @@ public class Region {
         // Requête pour selectionner le nombre total de regions
         String sql = "SELECT COUNT(*) AS total " + " FROM region";
 
-        // Requête pour selectionner chaque region
+        // Requête pour selectionner chaque departements
         String sql2 = "SELECT * " + " FROM region";
         
-        // Requête pour selectionner le departements pour chaque region
+        // Requête pour selectionner le departements pour chaque departements
         String sql3 = "SELECT * " + " FROM departement WHERE region = ?";
         
         try {
@@ -81,13 +83,13 @@ public class Region {
             System.out.print(Globals.regionArray + "\n");
 
             int n = nbRegions;
-            List<String> nomRegion = new ArrayList<String>();
+            List<String> nomRegion = new ArrayList();
 
             // Création des arrayList régions et départements
             while (i < n) {
-                List<String> region = new ArrayList<String>();
+                List<String> departements = new ArrayList();
                
-                regionEnCours = Globals.regionArray.get(i).toString();
+                regionEnCours = Globals.regionArray.get(i);
 
                 selectDepartements = cnx.prepareStatement(sql3);
                 // Execute la requête de selection des departements
@@ -95,12 +97,16 @@ public class Region {
                 selectDepartements.setString(1, regionEnCours);
                 ResultSet resultSelectDepartement = selectDepartements.executeQuery();
                 nomRegion.add(regionEnCours);
+                if (ajout == true) {
+                    // ajout de l'option tout départements
+                    departements.add("Tous les départements");
+                }
                 
                 while (resultSelectDepartement.next()){
-                    region.add(resultSelectDepartement.getString("departement"));
+                    departements.add(resultSelectDepartement.getString("departement"));
                 }
 
-                Globals.lesRegions.add(region);         
+                lesDepartements.add(departements);         
 
                 i++;
             } //end of while
@@ -110,15 +116,20 @@ public class Region {
                 jComboBox1.setModel(new DefaultComboBoxModel(nomRegion.toArray()));  
             }
             if (jComboBox2 != null) {
-                jComboBox2.setModel(new DefaultComboBoxModel(Globals.lesRegions.get(0).toArray()));
+                jComboBox2.setModel(new DefaultComboBoxModel(lesDepartements.get(0).toArray()));
             }
             if (jComboBox5 != null) {
                 jComboBox5.setModel(new DefaultComboBoxModel(nomRegion.toArray()));  
             }
             if (jComboBox6 != null) {
-                jComboBox6.setModel(new DefaultComboBoxModel(Globals.lesRegions.get(0).toArray()));
+                jComboBox6.setModel(new DefaultComboBoxModel(lesDepartements.get(0).toArray()));
             }
-            
+            if (jComboBox9 != null) {
+                jComboBox9.setModel(new DefaultComboBoxModel(nomRegion.toArray()));  
+            }
+            if (jComboBox10 != null) {
+                jComboBox10.setModel(new DefaultComboBoxModel(lesDepartements.get(0).toArray()));
+            }
             // La création des collections d'objets s'est bien déroulée
             System.out.println("Chargement des collections des regions / départements OK !");
             bool = true;

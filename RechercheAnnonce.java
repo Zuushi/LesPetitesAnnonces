@@ -6,12 +6,19 @@
 package lespetitesannonces;
 
 import com.alee.laf.WebLookAndFeel;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 
 /**
@@ -24,6 +31,11 @@ public class RechercheAnnonce extends javax.swing.JFrame {
      * Creates new form AjoutAnnonce
      */
     public RechercheAnnonce() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 4, screenSize.height / 4);
+        Point newLocation = new Point(middle.x - (this.getWidth() / 4), 
+        middle.y - (this.getHeight() / 4));
+        this.setLocation(newLocation);
         initComponents();
     }
 
@@ -50,6 +62,10 @@ public class RechercheAnnonce extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton20 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +134,45 @@ public class RechercheAnnonce extends javax.swing.JFrame {
         }
     });
 
+    jLabel10.setText(" Connexion ");
+    jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jLabel10MouseClicked(evt);
+        }
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jLabel10MouseExited(evt);
+        }
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jLabel10MouseEntered(evt);
+        }
+    });
+
+    jLabel11.setText(" Inscription ");
+    jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jLabel11MouseClicked(evt);
+        }
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jLabel11MouseExited(evt);
+        }
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jLabel11MouseEntered(evt);
+        }
+    });
+
+    jLabel12.setText(" Rechercher ");
+    jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jLabel12MouseClicked(evt);
+        }
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jLabel12MouseExited(evt);
+        }
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jLabel12MouseEntered(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -154,15 +209,35 @@ public class RechercheAnnonce extends javax.swing.JFrame {
                         .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(23, 23, 23))
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jSeparator1)
+            .addContainerGap())
         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(385, 385, 385)
-            .addComponent(jButton20)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(391, 391, 391)
+                    .addComponent(jButton20))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabel12)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel11)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel10)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addContainerGap(52, Short.MAX_VALUE)
+            .addContainerGap()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(22, 22, 22)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(36, 36, 36)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -178,9 +253,9 @@ public class RechercheAnnonce extends javax.swing.JFrame {
                 .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
+            .addGap(24, 24, 24)
             .addComponent(jButton20)
             .addGap(15, 15, 15))
     );
@@ -193,13 +268,146 @@ public class RechercheAnnonce extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        if(Globals.emailUser.equals("")) {
+            int selectedRow = jTable1.getSelectedRow();
+            String strNumeroAnnonce = (String) jTable1.getValueAt(selectedRow, 0);
+            int numeroAnnonce = Integer.parseInt(strNumeroAnnonce);
+            System.out.println("Numéro d'annonce selectionné : " + numeroAnnonce);
+            if (numeroAnnonce != -1) {
+                try {
+
+                    Annonce annonceChoisi = new Annonce(numeroAnnonce);
+                    VoirAnnonce voirAnnonce = new VoirAnnonce(annonceChoisi);
+                    this.remove(this.jPanel1);
+                    this.add(voirAnnonce.getContentPane());
+                    this.invalidate();
+                    this.revalidate();
+                    this.getContentPane().repaint();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(RechercheAnnonce.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String region = String.valueOf(jComboBox5.getSelectedItem());
+        String departement = String.valueOf(jComboBox6.getSelectedItem());
+        String categorie = String.valueOf(jComboBox7.getSelectedItem());
+        String sousCategorie = String.valueOf(jComboBox8.getSelectedItem());
+        System.out.println("Region selectionné : " + region);
+        System.out.println("Département selectionné : " + departement);
+        System.out.println("Catégorie selectionné : " + categorie);
+        System.out.println("Sous-catégorie selectionné :  " + sousCategorie);
+        Annonce chargement = new Annonce("", 0, "", "", "", "", 0.0, "", "", "", "", "", false, true);
+        try {
+            chargement.chargeAnnonce(region, departement, categorie, sousCategorie);
+        } catch (SQLException ex) {
+            Logger.getLogger(RechercheAnnonce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+        int index = jComboBox7.getSelectedIndex();
+        jComboBox8.setModel(new DefaultComboBoxModel(Categorie.lesSousCategories.get(index).toArray()));
+    }//GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        int index = jComboBox5.getSelectedIndex();
+        jComboBox6.setModel(new DefaultComboBoxModel(Region.lesDepartements.get(index).toArray()));
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        jLabel10.setOpaque(true);
+        jLabel10.setBackground(null);
+        jLabel10.setBorder(null);
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        jLabel10.setBorder(BorderFactory.createRaisedBevelBorder());
+        jLabel10.setOpaque(true);
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+      
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        if (jLabel10.getText().equals(" Connexion ")) {
+            Connexion connexion = new Connexion();
+            connexion.setVisible(true);
+        } else if (jLabel10.getText().equals(" Déconnexion ")) {
+            try {
+                Globals.deconnexion();
+                Frame[] frames = JFrame.getFrames();
+                for (Frame frame : frames) {
+                    frame.toFront();  
+                    frame.dispose();
+                } 
+                RechercheAnnonce rAnnonce = new RechercheAnnonce();
+                this.dispose();
+                Region region = new Region();
+                Categorie catégorie = new Categorie ();
+                region.collection(true);
+                catégorie.collection(true);
+                rAnnonce.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(RechercheAnnonce.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+
+            Inscription inscription = new Inscription();
+            inscription.setVisible(false);
+            this.remove(this.jPanel1);
+            this.add(inscription.getContentPane());
+            this.invalidate();
+            this.revalidate();
+            this.getContentPane().repaint();
+            this.repaint();
+
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
+        jLabel11.setOpaque(true);
+        jLabel11.setBackground(null);
+        jLabel11.setBorder(null);
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jLabel11MouseExited
+
+    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
+        jLabel11.setBorder(BorderFactory.createRaisedBevelBorder());
+        jLabel11.setOpaque(true);
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel11MouseEntered
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
+        jLabel12.setOpaque(true);
+        jLabel12.setBackground(null);
+        jLabel12.setBorder(null);
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jLabel12MouseExited
+
+    private void jLabel12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseEntered
+        jLabel12.setBorder(BorderFactory.createRaisedBevelBorder());
+        jLabel12.setOpaque(true);
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel12MouseEntered
 
     public JPanel getjPanel1() {
         return jPanel1;
@@ -241,56 +449,6 @@ public class RechercheAnnonce extends javax.swing.JFrame {
         this.jComboBox8 = jComboBox8;
     }
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
-        int index = jComboBox7.getSelectedIndex();
-        jComboBox8.setModel(new DefaultComboBoxModel(Globals.lesCatégories.get(index).toArray()));
-    }//GEN-LAST:event_jComboBox7ActionPerformed
-
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
-        int index = jComboBox5.getSelectedIndex();
-        jComboBox6.setModel(new DefaultComboBoxModel(Globals.lesRegions.get(index).toArray()));
-    }//GEN-LAST:event_jComboBox5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String region = String.valueOf(jComboBox5.getSelectedItem());
-        String departement = String.valueOf(jComboBox6.getSelectedItem());
-        String categorie = String.valueOf(jComboBox7.getSelectedItem());
-        String sousCategorie = String.valueOf(jComboBox8.getSelectedItem());
-        System.out.println("Region selectionné : " + region);
-        System.out.println("Département selectionné : " + departement);
-        System.out.println("Catégorie selectionné : " + categorie);
-        System.out.println("Sous-catégorie selectionné :  " + sousCategorie);
-        Annonce chargement = new Annonce("", 0, "", "", "", "", 0.0, "", "", "", "", "", false, true);
-        try {
-            chargement.chargeAnnonce(region, departement, categorie, sousCategorie);
-        } catch (SQLException ex) {
-            Logger.getLogger(RechercheAnnonce.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        int selectedRow = jTable1.getSelectedRow();
-        String strNumeroAnnonce = (String) jTable1.getValueAt(selectedRow, 0);
-        int numeroAnnonce = Integer.parseInt(strNumeroAnnonce);
-        System.out.println("Numéro d'annonce selectionné : " + numeroAnnonce);
-        if (numeroAnnonce != -1) {
-            try {
-
-                Annonce annonceChoisi = new Annonce(numeroAnnonce);
-                VoirAnnonce voirAnnonce = new VoirAnnonce(annonceChoisi);
-                this.remove(this.jPanel1);
-                this.add(voirAnnonce.getContentPane());
-                this.invalidate();
-                this.revalidate();
-                this.getContentPane().repaint();
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(RechercheAnnonce.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton20ActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -331,9 +489,9 @@ public class RechercheAnnonce extends javax.swing.JFrame {
                     WebLookAndFeel.install ();
                     new RechercheAnnonce().setVisible(true);
                     // On crée la collection d'objet Region -> Departements
-                    region.collection();
+                    region.collection(true);
                     // On crée la collection d'objet Catégorie -> Sous-catégorie
-                    catégorie.collection();
+                    catégorie.collection(true);
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(RechercheAnnonce.class.getName()).log(Level.SEVERE, null, ex);
@@ -350,12 +508,16 @@ public class RechercheAnnonce extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> jComboBox7;
     public static javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

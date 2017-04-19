@@ -1,10 +1,11 @@
-package modele;
+package lespetitesannonces;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.PreparedStatement;
+import lespetitesannonces.Connect;
 
 public class User {
 	private String mail;
@@ -14,7 +15,7 @@ public class User {
 	private String telephone;
 	
 	
-	// Constructeur user : Inscrit l'utilisateur dans la base de donnée et crée un user.
+	// Constructeur user : Inscrit l'utilisateur dans la base de donnï¿½e et crï¿½e un user.
 	public User(String mail, String nom, String prenom, String mdp, String telephone) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement createuser = null;
@@ -30,7 +31,7 @@ public class User {
 			createuser = (PreparedStatement) cnx.prepareStatement(sql);
 			createuser.executeUpdate();			
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de l'inscriptionsss : " + e);
+			JOptionPane.showMessageDialog(null, "Probleme lors de l'inscription : " + e);
 		}finally {
 			if(cnx != null){
 				cnx.close();
@@ -43,7 +44,7 @@ public class User {
 	
 	
 
-	// On crée un User des que l'on se connecte a son compte. 
+	// On cree un User des que l'on se connecte a son compte. 
 	public User(String mail, String mdp) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement checkmail = null;
@@ -53,16 +54,18 @@ public class User {
 			checkmail = (PreparedStatement) cnx.prepareStatement(Sqlcheck);
 			ResultSet check = checkmail.executeQuery();
 			check.next();
-			// Création de l'user
+			// Creation de l'user
 			this.mail = mail;
 			this.nom = check.getString("nom");
 			this.prenom = check.getString("prenom");
 			this.mdp = mdp;
 			this.telephone = check.getString("telephone");
-			System.out.println(this.mail + " " + this.nom + " " + this.prenom + " " + this.telephone + " Connection réussie");			
+                        // Test unitaire 
+                        Globals.prenomUser = this.prenom;
+			System.out.println(this.mail + " " + this.nom + " " + this.prenom + " " + this.telephone + " Connection reussie");			
 
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de la connexion : " + e);
+			JOptionPane.showMessageDialog(null, "Probleme lors de la connexion : " + e);
 			
 		}finally {
 			if(cnx != null){
@@ -74,7 +77,8 @@ public class User {
 		}
 	}
 
-	public void modifierProfil( String nom, String prenom, String telephone) throws SQLException{
+	public boolean modifierProfil(String nom, String prenom, String telephone) throws SQLException{
+		boolean a = false;
 		Connection cnx = null;
 		PreparedStatement modify = null;
 		try{
@@ -82,16 +86,17 @@ public class User {
 			this.prenom = prenom;
 			this.telephone = telephone;
 			cnx = Connect.Connecter();
-			String Sqlmodify = "UPDATE user SET nom = ?, prenom = ?, telephone = ? WHERE mail = ?";
+			String Sqlmodify = "UPDATE user SET nom = ?, prenom = ?, telephone = ? WHERE mail='" + this.mail + "'" ;
 			modify = (PreparedStatement) cnx.prepareStatement(Sqlmodify);
 			modify.setString(1, nom);
 			modify.setString(2, prenom);
 			modify.setString(3, telephone);
-			modify.setString(4, this.mail);
-			modify.executeUpdate();
 			
+			modify.executeUpdate();
+			a = true;
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de la modification du profil : " + e);
+			JOptionPane.showMessageDialog(null, "Probleme lors de l'inscription : " + e);
+			a = false;
 		}finally{
 			if(cnx != null){
 				cnx.close();
@@ -100,9 +105,35 @@ public class User {
 				modify.close();
 			}
 		}
+		return a;
 	}
-	
-	public void modifierMdp( String mdp) throws SQLException{
+
+	public boolean supprimerProfil() throws SQLException{
+		
+		boolean a = false;
+		Connection cnx = null;
+		PreparedStatement destroy = null;
+		try{
+			cnx = Connect.Connecter();
+			String sqldestroy = "DELETE FROM user where mail='" + this.mail + "'";
+			destroy = (PreparedStatement) cnx.prepareStatement(sqldestroy);
+			destroy.execute();
+			a = true;
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Probleme lors de la suppression : " + e);
+			a = false;
+		}finally{
+			if(cnx != null){
+				cnx.close();
+			}
+			if(destroy != null){
+				destroy.close();
+			}
+		}
+		return a;
+	}
+        
+        public void modifierMdp(String mdp) throws SQLException{
 		Connection cnx = null;
 		PreparedStatement modify = null;
 		try{
@@ -117,34 +148,13 @@ public class User {
 			modify.executeUpdate();
 			
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de la modification du mot de passe : " + e);
+			JOptionPane.showMessageDialog(null, "ProblÃ¨me lors de la modification du mot de passe : " + e);
 		}finally{
 			if(cnx != null){
 				cnx.close();
 			}
 			if(modify != null){
 				modify.close();
-			}
-		}
-	}
-
-	public void supprimerProfil() throws SQLException{
-		
-		Connection cnx = null;
-		PreparedStatement destroy = null;
-		try{
-			cnx = Connect.Connecter();
-			String sqldestroy = "DELETE FROM user where mail='" + this.mail + "'";
-			destroy = (PreparedStatement) cnx.prepareStatement(sqldestroy);
-			destroy.execute();
-		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Problème lors de la suppression : " + e);
-		}finally{
-			if(cnx != null){
-				cnx.close();
-			}
-			if(destroy != null){
-				destroy.close();
 			}
 		}
 	}

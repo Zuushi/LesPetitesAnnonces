@@ -17,17 +17,22 @@ import static lespetitesannonces.AjoutAnnonce.jComboBox4;
 import static lespetitesannonces.Connect.Connecter;
 import static lespetitesannonces.RechercheAnnonce.jComboBox7;
 import static lespetitesannonces.RechercheAnnonce.jComboBox8;
+import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox11;
+import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox12;
 
 /**
  *
  * @author jonathan
  */
 public class Categorie {
+        public static List<List<String>> lesSousCategories = new ArrayList<List<String>>();
     //
     // Méthodes
     //
-    public boolean collection() throws SQLException {
-
+    public boolean collection(boolean ajout) throws SQLException {
+        // on reinitialise a chaque fois
+        lesSousCategories.clear();
+        
         // Booléen renvoyé à la fin de la fonction        
         boolean bool = false;
         
@@ -39,7 +44,7 @@ public class Categorie {
         int nbCatégories = 0;
         int i = 0;
         String catégorieEnCours;
-        //ArrayList CatégorieArray = new ArrayList();
+        //ArrayList categorieArray = new ArrayList();
             
         // Requête pour selectionner le nombre total de catégories
         String sql = "SELECT COUNT(*) AS total " + " FROM categorie";
@@ -69,24 +74,24 @@ public class Categorie {
             selectNomCatégorie = cnx.prepareStatement(sql2);
             
             // Execute la requête de selection des catégories
-            ResultSet selectNomDesRegions = selectNomCatégorie.executeQuery();
+            ResultSet selectNomDesCatégories = selectNomCatégorie.executeQuery();
             
             // On insère dans un listArray le nom de chaque catégorie
-            while (selectNomDesRegions.next()){
-                Globals.CatégorieArray.add(selectNomDesRegions.getString("categorie"));
+            while (selectNomDesCatégories.next()){
+                Globals.categorieArray.add(selectNomDesCatégories.getString("categorie"));
             }
             
             // Test unitaire qui renvoi la liste des catégories
-            System.out.print(Globals.CatégorieArray + "\n");
+            System.out.print(Globals.categorieArray + "\n");
 
             int n = nbCatégories;
-            List<String> nomCatégorie = new ArrayList<String>();
+            List<String> nomCatégorie = new ArrayList();
 
             // Création des arrayList catégories et sous-catégories
             while (i < n) {
-                List<String> souscatégorie = new ArrayList<String>();
+                List<String> souscatégorie = new ArrayList();
                
-                catégorieEnCours = Globals.CatégorieArray.get(i).toString();
+                catégorieEnCours = Globals.categorieArray.get(i);
 
                 selectSousCatégories = cnx.prepareStatement(sql3);
                 // Execute la requête de selection des sous-catégories
@@ -95,11 +100,16 @@ public class Categorie {
                 ResultSet resultSelectDepartement = selectSousCatégories.executeQuery();
                 nomCatégorie.add(catégorieEnCours);
                 
+                if (ajout == true) {
+                    // ajout de l'option toutes sous catégories
+                    souscatégorie.add("Toutes sous catégories");
+                }
+                
                 while (resultSelectDepartement.next()){
                     souscatégorie.add(resultSelectDepartement.getString("souscategorie"));
                 }
 
-                Globals.lesCatégories.add(souscatégorie);         
+                lesSousCategories.add(souscatégorie);         
 
                 i++;
             } //end of while
@@ -109,13 +119,19 @@ public class Categorie {
                 jComboBox3.setModel(new DefaultComboBoxModel(nomCatégorie.toArray()));  
             }
             if (jComboBox4 != null) {
-                jComboBox4.setModel(new DefaultComboBoxModel(Globals.lesCatégories.get(0).toArray()));
+                jComboBox4.setModel(new DefaultComboBoxModel(lesSousCategories.get(0).toArray()));
             }
             if (jComboBox7 != null) {
                 jComboBox7.setModel(new DefaultComboBoxModel(nomCatégorie.toArray()));  
             }
             if (jComboBox8 != null) {
-                jComboBox8.setModel(new DefaultComboBoxModel(Globals.lesCatégories.get(0).toArray()));
+                jComboBox8.setModel(new DefaultComboBoxModel(lesSousCategories.get(0).toArray()));
+            }
+            if (jComboBox11 != null) {
+                jComboBox11.setModel(new DefaultComboBoxModel(nomCatégorie.toArray()));  
+            }
+            if (jComboBox12 != null) {
+                jComboBox12.setModel(new DefaultComboBoxModel(lesSousCategories.get(0).toArray()));
             }
             
             // La création des collections d'objets s'est bien déroulée

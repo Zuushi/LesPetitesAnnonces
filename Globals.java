@@ -14,11 +14,20 @@ import java.util.List;
  */
 public class Globals {
     
-    public static List<List<String>> lesRegions = new ArrayList<List<String>>();
-    public static List<List<String>> lesCatégories = new ArrayList<List<String>>();
-    public static ArrayList regionArray = new ArrayList();
-    public static ArrayList CatégorieArray = new ArrayList();
-    public static String emailUser = "jonathan.graille@gmail.com";
+    //public static List<List<String>> lesRegions = new ArrayList<List<String>>();
+    //public static List<List<String>> lesCatégories = new ArrayList<List<String>>();
+    public static ArrayList<String> regionArray = new ArrayList<String>();
+    public static ArrayList<String> categorieArray = new ArrayList<String>();
+    public static String emailUser = "";
     public static String telephoneUser = "";
+    public static String prenomUser = "";
+    public static String nomUser = "";
+    
+    public static void deconnexion() {
+        emailUser = "";
+        telephoneUser = "";
+        prenomUser = "";
+        nomUser = "";
+    }
     
 }

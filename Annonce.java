@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static lespetitesannonces.MesAnnonces.jTable2;
 import static lespetitesannonces.RechercheAnnonce.jTable1;
+import static lespetitesannonces.RechercheAnnonceConnecte.jTable100;
 
 /**
  *
@@ -114,14 +116,6 @@ public class Annonce {
 
     public void setTitre(String titre) {
         this.titre = titre;
-    }
-
-    public int getCode_postale() {
-        return codePostal;
-    }
-
-    public void setCode_postale(int code_postale) {
-        this.codePostal = code_postale;
     }
 
     public String getVille() {
@@ -258,30 +252,33 @@ public class Annonce {
         
         try {
             // On se connecte à la base de donnée
-            cnx = Connecter();
-            insertAnnonce = cnx.prepareStatement(sql);
-            
-            // On récupère les valeurs à insérer en base
-            insertAnnonce.setString(1, this.titre);
-            insertAnnonce.setInt(2, this.codePostal);
-            insertAnnonce.setString(3, this.ville);
-            insertAnnonce.setString(4, this.telephone);
-            insertAnnonce.setString(5, this.description);
-            insertAnnonce.setDouble(6, this.prix);
-            insertAnnonce.setString(7, this.mail);
-            insertAnnonce.setString(8, this.region);
-            insertAnnonce.setString(9, this.departement);
-            insertAnnonce.setString(10, this.sousCategorie);
-            insertAnnonce.setString(11, this.categorie);
-            insertAnnonce.setString(12, "Ajoutée le : " + dtf.format(now));
-            insertAnnonce.setBoolean(13, this.montrerTelephone);
-            insertAnnonce.setBoolean(14, this.montrerEmail);
+            try {
+                cnx = Connecter();
+                insertAnnonce = cnx.prepareStatement(sql);
 
-            // Execute l'insertion de l'annonce
-            insertAnnonce.executeUpdate();
-            // L'ajout d'annonce c'est bien déroulé
-            bool = true;
+                // On récupère les valeurs à insérer en base
+                insertAnnonce.setString(1, this.titre);
+                insertAnnonce.setInt(2, this.codePostal);
+                insertAnnonce.setString(3, this.ville);
+                insertAnnonce.setString(4, this.telephone);
+                insertAnnonce.setString(5, this.description);
+                insertAnnonce.setDouble(6, this.prix);
+                insertAnnonce.setString(7, this.mail);
+                insertAnnonce.setString(8, this.region);
+                insertAnnonce.setString(9, this.departement);
+                insertAnnonce.setString(10, this.sousCategorie);
+                insertAnnonce.setString(11, this.categorie);
+                insertAnnonce.setString(12, "Ajoutée le : " + dtf.format(now));
+                insertAnnonce.setBoolean(13, this.montrerTelephone);
+                insertAnnonce.setBoolean(14, this.montrerEmail);
 
+                // Execute l'insertion de l'annonce
+                insertAnnonce.executeUpdate();
+                // L'ajout d'annonce c'est bien déroulé
+                bool = true;
+            } catch (NullPointerException e) {
+                bool = false;
+            }
         } catch (SQLException e) {
                 // Une erreur est survenue lors de l'ajout d'annonce
                 bool = false;
@@ -302,48 +299,48 @@ public class Annonce {
     }
     // Méthode
     //
-    // Fonction qui crée une annonce
-    public boolean modifierAnnonce(int id, String titre, int code_postale,
-            String ville, String adresse, String telephone, String description,
-            double prix, String mail, String region, String departement,
-            String sousCategorie, String categorie) throws SQLException {
-        
-        // Booléen renvoyé à la fin de la fonction        
+    // Fonction qui modifie une annonce
+    public boolean modifierAnnonce( int id, String titre, double prix, String description, boolean montrerTel, boolean montrerMail ) throws SQLException {
+    // Booléen renvoyé à la fin de la fonction        
         boolean bool = false;
         PreparedStatement updateAnnonce = null;
         Connection cnx = null;
+        int showtel = 0;
+        int showmail = 0;
         
         // Génère la date et l'heure
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now(); // Exemple : 2016/11/16 12:08:43
             
-            String sql = "UPDATE annoncesTest " + "SET titre = ?, code_postale = ?,"
-                    + " ville = ?, adresse = ?, telephone = ?, description = ?,"
-                    + " prix = ?, mail = ?, region = ?, departement = ?, "
-                    + " souscategorie = ?, categorie = ?, date_publication = ? "
-                    + "WHERE id = ?";
+            String sql = "UPDATE annonces " + "SET titre = ?, description = ?,"
+                    + " prix = ?, date_publication = ?, voir_telephone = ?, "
+                    + " voir_mail = ? WHERE id = ?";
         
         try {
             // On se connecte à la base de donnée
             cnx = Connecter();
             updateAnnonce = cnx.prepareStatement(sql);
             
+
+            if(montrerTel){
+                showtel = 1;
+            }else{
+                showtel = 0;
+            }
+            if(montrerMail){
+                showmail = 1;
+            }else{
+                showmail = 0;
+            }
+            
             // On récupère toute les valeurs et on met à jour
             updateAnnonce.setString(1, titre);
-            updateAnnonce.setInt(2, code_postale);
-            updateAnnonce.setString(3, ville);
-            updateAnnonce.setString(4, adresse);
-            updateAnnonce.setString(5, telephone);
-            updateAnnonce.setString(6, description);
-            updateAnnonce.setDouble(7, prix);
-            updateAnnonce.setString(8, mail);
-            updateAnnonce.setString(9, region);
-            updateAnnonce.setString(10, departement);
-            updateAnnonce.setString(11, sousCategorie);
-            updateAnnonce.setString(12, categorie);
-            updateAnnonce.setString(13, "Modifiée le : " + dtf.format(now));
-            updateAnnonce.setInt(14, id);
-
+            updateAnnonce.setString(2, description);
+            updateAnnonce.setDouble(3, prix);
+            updateAnnonce.setString(4, "Modifiée le : " + dtf.format(now));
+            updateAnnonce.setInt(5, showtel);
+            updateAnnonce.setInt(6, showmail);
+            updateAnnonce.setInt(7, id);
             // Execute la mise à jour de l'annonce
             updateAnnonce.executeUpdate();
             // La mise à jour de l'annonce s'est bien déroulé
@@ -379,7 +376,7 @@ public class Annonce {
         Connection cnx = null;
             
             // Requête pour supprimer
-            String sql = "DELETE FROM annoncesTest " + " WHERE id = ?";
+            String sql = "DELETE FROM annonces " + " WHERE id = ?";
         
         try {
             // On se connecte à la base de donnée
@@ -420,11 +417,22 @@ public class Annonce {
         
         // Booléen renvoyé à la fin de la fonction        
         boolean bool;
+        int compteur = 2;
         PreparedStatement selectAnnonce = null;
         Connection cnx = null;
         DefaultTableModel model = new DefaultTableModel(new String[]{"Numéro", "Titre", "Lieu", "Description", "Prix ( € )"}, 0);
         
-        String sql = "SELECT * FROM annonces " + " WHERE region = ? AND departement = ? AND categorie = ? AND souscategorie = ?";
+        String sql = "SELECT * FROM annonces " + " WHERE region = ? AND categorie = ? ";
+        if (departement.equals("Tous les départements")) {
+            //rien
+        } else {
+            sql = sql + "AND departement = ? ";
+        }
+        if (sousCategorie.equals("Toutes sous catégories")) {
+            // rien
+        } else {
+            sql = sql + "AND souscategorie = ?";
+        }
         
         try {
             // On se connecte à la base de donnée
@@ -432,9 +440,23 @@ public class Annonce {
             selectAnnonce = cnx.prepareStatement(sql);
             
             selectAnnonce.setString(1, region);
-            selectAnnonce.setString(2, departement);
-            selectAnnonce.setString(3, categorie);
-            selectAnnonce.setString(4, sousCategorie);
+            selectAnnonce.setString(2, categorie);
+            if (departement.equals("Tous les départements")) {
+                //rien
+            } else {
+                // Le compteur sert a determine les parametres 3 et 4 de la requete
+                compteur++;
+                selectAnnonce.setString(compteur, departement);
+                //System.out.println(compteur);
+            }
+            selectAnnonce.setString(2, categorie);
+            if (sousCategorie.equals("Toutes sous catégories")) {
+                // rien
+            } else {
+                compteur++;
+                selectAnnonce.setString(compteur, sousCategorie);
+                //System.out.println(compteur);
+            }
 
             ResultSet rs = selectAnnonce.executeQuery();
                         
@@ -450,6 +472,65 @@ public class Annonce {
                 }
                 
                 jTable1.setModel(model);
+                if (jTable100 != null) {
+                    jTable100.setModel(model);
+                }
+                      
+            bool = true;
+
+        } catch (SQLException e) {
+                // Une erreur est survenue lors de l'ajout d'annonce
+                bool = false;
+                System.out.println(e.getMessage());
+
+        } finally {
+
+                if (selectAnnonce != null) {
+                        selectAnnonce.close();
+                }
+
+                if (cnx != null) {
+                        cnx.close();
+                }
+        }
+        // On retourne le booleen
+        return bool;
+    }
+    //
+    // Méthode qui charge les annonce de l'user en cours
+    //
+     public boolean chargeAnnonceUser(String mail) throws SQLException {
+        
+        // Booléen renvoyé à la fin de la fonction        
+        boolean bool;
+        PreparedStatement selectAnnonce = null;
+        Connection cnx = null;
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Numéro", "Titre", "Lieu", "Description", "Prix ( € )"}, 0);
+        
+        String sql = "SELECT * FROM annonces " + " WHERE mail = ?";
+        
+        try {
+            // On se connecte à la base de donnée
+            cnx = Connecter();
+            selectAnnonce = cnx.prepareStatement(sql);
+            
+            selectAnnonce.setString(1, mail);
+ 
+
+            ResultSet rs = selectAnnonce.executeQuery();
+                        
+            while(rs.next())
+                { 
+                    String i = rs.getString("id");
+                    String a = rs.getString("titre");
+                    String d = rs.getString("ville");
+                    String e = rs.getString("description");
+                    Double f = rs.getDouble("prix");
+                    
+                    model.addRow(new Object[]{i, a, d, e, f});
+                }
+                
+                jTable2.setModel(model);
                       
             bool = true;
 
@@ -473,7 +554,7 @@ public class Annonce {
     }
     // Les Méthodes
     //
-    // Fonction qui crée une annonce
+    // Fonction qui crée une annonce si les donnees en arguments sont correctes
     public boolean testValeurs(String titre, String codePostal, String ville,
             String description, String prix, String region, String departement,
             String categorie, String sousCategorie, boolean telephone, boolean email)
@@ -493,6 +574,8 @@ public class Annonce {
         // Test du code postal qui doit être composé de 5 chiffres
         // match test si la variable ne contient que des chiffres
         if (codePostal.matches("[0-9]+") && codePostal.length() == 5) {
+            this.codePostal = Integer.parseInt(codePostal);
+        } else if (codePostal.matches("[0-9]+") && codePostal.length() == 4){
             this.codePostal = Integer.parseInt(codePostal);
         } else {
             messageError = messageError + "- Vôtre code postal doit être composé de 5 chiffres !\n";
