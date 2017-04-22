@@ -31,21 +31,4 @@ public static Connection Connecter(){
 	}
 	
 }
-/*
-public static Connection Connecter(){
-    
-	String url = "jdbc:mysql://sql8.freesqldatabase.com:3306/sql8166028";
-        
-	try {
-		//Class.forName("com.mysql.jdbc.Driver");
-		Connection cnx = DriverManager.getConnection(url, "sql8166028", "WvKbmPhAi4");
-		return cnx;
-	}
-	catch (Exception e){
-		System.err.println("Erreur de connexion: "+ e.getMessage());
-		return null;
-	}
-	
-}*/
-
 }//END CLASS
