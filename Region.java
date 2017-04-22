@@ -21,8 +21,10 @@ import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox10;
 import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox9;
 
 /**
- *
- * @author jonathan
+ * La classe Region permet de charger les régions dans les jComboBox associées.<br />
+ * Toutes les régions proviennent de la table region de la base de données.
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class Region {
     public static List<List<String>> lesDepartements = new ArrayList<List<String>>();

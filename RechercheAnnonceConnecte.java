@@ -23,8 +23,10 @@ import javax.swing.JPanel;
 
 
 /**
- *
- * @author jonathan
+ * La classe RechercheAnnonceConnecte permet d'afficher la page principale permettant de faire des recherches d'annonces.<br>
+ * Cette classe correspond à la version connectée.<br>
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class RechercheAnnonceConnecte extends javax.swing.JFrame {
 

@@ -23,8 +23,10 @@ import static lespetitesannonces.Connect.Connecter;
 
 
 /**
- *
- * @author jonathan
+ * La classe VoirAnnonce permet d'afficher la page pour voir une annonce<br>
+ * Cette classe correspond à la version non connectée.<br>
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class VoirAnnonce extends javax.swing.JFrame {
 

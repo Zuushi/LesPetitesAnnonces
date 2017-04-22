@@ -17,8 +17,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
+ * La classe AjoutAnnonce correspond à la page qui permet d'ajouter une nouvelle annonce.<br />
+ * Il faut être connecté pour pouvoir ajouter une annonce dans la base de données.
  *
- * @author jonathan
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class AjoutAnnonce extends javax.swing.JFrame {
 

@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.PreparedStatement;
-import lespetitesannonces.Connect;
-
+/**
+ * La classe User permet de créer un objet User et d'appeler toutes les méthodes associées.<br>
+ * Certaines méthodes contiennent le SQL permettant d'échanger avec la base de données.
+ * @author Graille Jonathan
+ * @version 0.2
+ */
 public class User {
 	private String mail;
 	private String nom;
@@ -15,7 +19,7 @@ public class User {
 	private String telephone;
 	
 	
-	// Constructeur user : Inscrit l'utilisateur dans la base de donn�e et cr�e un user.
+	// Constructeur user : Inscrit l'utilisateur dans la base de donnée et crée un user.
 	public User(String mail, String nom, String prenom, String mdp, String telephone) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement createuser = null;

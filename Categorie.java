@@ -21,8 +21,10 @@ import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox11;
 import static lespetitesannonces.RechercheAnnonceConnecte.jComboBox12;
 
 /**
- *
- * @author jonathan
+ * La classe Categorie permet de charger les catégorie dans les jComboBox associées.<br />
+ * Toutes les catégories proviennent de la table catégorie de la base de données.
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class Categorie {
         public static List<List<String>> lesSousCategories = new ArrayList<List<String>>();

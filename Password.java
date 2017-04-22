@@ -6,10 +6,6 @@
 package lespetitesannonces;
 
 /**
- *
- * @author jonathan
- */
-/**
   * Author: Ian Gallagher <igallagher@securityinnovation.com>
   *
   * This code utilizes jBCrypt, which you need installed to use.

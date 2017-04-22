@@ -15,8 +15,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
 /**
- *
- * @author Panoramoth
+ * La classe ModifAnnonce permet d'afficher la page contenant toutes les annonces liées au compte utilisateur connecté.<br />
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class MesAnnonces extends javax.swing.JFrame {
 

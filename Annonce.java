@@ -16,8 +16,10 @@ import static lespetitesannonces.RechercheAnnonce.jTable1;
 import static lespetitesannonces.RechercheAnnonceConnecte.jTable100;
 
 /**
- *
- * @author jonathan
+ * La classe Annonce permet de créer un objet Annonce et d'appeler toutes les méthodes associées.<br />
+ * Certaines méthodes contiennent le SQL permettant d'échanger avec la base de données.
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class Annonce {
     

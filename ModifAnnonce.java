@@ -16,8 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Panoramoth
+ * La classe ModifAnnonce permet d'afficher la page contenant l'annonce et ses informations associées.<br />
+ * Vous pouvez apporter des modifications ou la supprimery.<br />
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class ModifAnnonce extends javax.swing.JFrame {
 

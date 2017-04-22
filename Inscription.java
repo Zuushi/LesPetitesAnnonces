@@ -20,8 +20,10 @@ import javax.swing.JOptionPane;
 import static lespetitesannonces.Password.hashPassword;
 
 /**
- *
- * @author jonathan
+ * La classe Inscription permet d'afficher la page d'inscription une fois que l'utilisateur à cliqué<br>
+ * sur le bouton inscription dans le menu en haut du programme.<br>
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class Inscription extends javax.swing.JFrame {
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);

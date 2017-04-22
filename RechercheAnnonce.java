@@ -22,8 +22,10 @@ import javax.swing.JPanel;
 
 
 /**
- *
- * @author jonathan
+ * La classe RechercheAnnonce permet d'afficher la page principale permettant de faire des recherches d'annonces.<br />
+ * Cette classe correspond à la version non connectée.<br />
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class RechercheAnnonce extends javax.swing.JFrame {
 
@@ -486,7 +488,7 @@ public class RechercheAnnonce extends javax.swing.JFrame {
                     Region region = new Region();
                     Categorie catégorie = new Categorie ();
                     // Install WebLaF as application L&F
-                    WebLookAndFeel.install ();
+                    WebLookAndFeel.install();
                     new RechercheAnnonce().setVisible(true);
                     // On crée la collection d'objet Region -> Departements
                     region.collection(true);

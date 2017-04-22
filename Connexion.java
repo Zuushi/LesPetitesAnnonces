@@ -18,8 +18,11 @@ import javax.swing.JOptionPane;
 import static lespetitesannonces.Password.checkPassword;
 
 /**
- *
- * @author jonathan
+ * La classe Connexion permet d'afficher la petite page qui permet à l'utilisateur de se connecter.<br />
+ * Si cette page est ouverte, le reste du programme restera bloqué jusqu'à la fermeture de celle-ci<br />
+ * par l'utilisateur ou la connexion de ce dernier.
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class Connexion extends javax.swing.JFrame {
 
@@ -149,6 +152,10 @@ public class Connexion extends javax.swing.JFrame {
 
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Frame[] frames = JFrame.getFrames();
+        for (Frame frame : frames) {
+            frame.setEnabled(true);
+        }
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

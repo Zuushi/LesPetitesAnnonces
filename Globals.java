@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author jonathan
+ * La classe Globals permet de stocker certaines données qui sont essentielles pour certains affichages.<br />
+ * @author Graille Jonathan
+ * @version 0.2
  */
 public class Globals {
     
-    //public static List<List<String>> lesRegions = new ArrayList<List<String>>();
-    //public static List<List<String>> lesCatégories = new ArrayList<List<String>>();
     public static ArrayList<String> regionArray = new ArrayList<String>();
     public static ArrayList<String> categorieArray = new ArrayList<String>();
     public static String emailUser = "";
